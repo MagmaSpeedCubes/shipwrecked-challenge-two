@@ -65,6 +65,10 @@ public class RoomManager : MonoBehaviour
         yield return null;
 
         GameObject.Find("Player").transform.position = previousPlayerPosition;
+
+        yield return null;
+
+        setLocks();
     }
 
     public void minigameWasLost()
@@ -81,16 +85,19 @@ public class RoomManager : MonoBehaviour
         if (currentMinigameIndex > 1)
         {
             GameObject.Find(doorList[1]).GetComponent<DoorScript>().locked = false;
+            GameObject.Find(doorList[1]).GetComponent<DoorScript>().ForceUpdate();
         }
 
         if (currentMinigameIndex > 2)
         {
             GameObject.Find(doorList[2]).GetComponent<DoorScript>().locked = false;
+            GameObject.Find(doorList[2]).GetComponent<Collider2D>().isTrigger = true;
         }
 
         if (currentMinigameIndex > 3)
         {
             GameObject.Find(doorList[3]).GetComponent<DoorScript>().locked = false;
+            GameObject.Find(doorList[3]).GetComponent<Collider2D>().isTrigger = true;
         }
 
     }

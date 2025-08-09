@@ -41,8 +41,6 @@ public class DoorScript : MonoBehaviour
                 col.isTrigger = true;
             }
 
-            prevLocked = locked;
-
     }
 
     // Update is called once per frame
@@ -54,14 +52,14 @@ public class DoorScript : MonoBehaviour
             {
                 sr.color = lockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
-                col.isTrigger = true;
+                col.isTrigger = false;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
-                col.isTrigger = false;
+                col.isTrigger = true;
             }
 
             prevLocked = locked;
@@ -71,6 +69,32 @@ public class DoorScript : MonoBehaviour
         prevLocked = locked;
 
         
+    }
+
+    public void ForceUpdate()
+    {
+        if (prevLocked != locked)
+        {
+            if (locked)
+            {
+                sr.color = lockedColor;
+                icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
+                col.isTrigger = false;
+            }
+
+            else if (!locked)
+            {
+                sr.color = unlockedColor;
+                icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
+                col.isTrigger = true;
+            }
+
+            prevLocked = locked;
+
+        }
+
+        prevLocked = locked;
+
     }
 
 }
