@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
+
 public class GuessManager : MonoBehaviour
 {
     public static GuessManager instance { get; private set; }
 
+    [SerializeField] private int levelNumber = 1;
     public int[] guessSequence;
     public GameObject guessPrefab;
     public GameObject[] guessObjects;
@@ -21,7 +24,7 @@ public class GuessManager : MonoBehaviour
         {
             instance = this;
 
-            
+
         }
         else
         {
@@ -29,7 +32,7 @@ public class GuessManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+
     }
 
     void Start()
@@ -58,9 +61,14 @@ public class GuessManager : MonoBehaviour
 
                 if (GameManager.instance.currentGuessCount < GameManager.instance.maxGuesses)
                 {
-                    SetupNextGuess();  
+                    SetupNextGuess();
                 }
-                
+
+                if (result.Sum() == guessSequence.Length * 3)
+                {
+                    Advance();
+                }
+
 
 
 
@@ -125,7 +133,7 @@ public class GuessManager : MonoBehaviour
         }
         previousGameObjects.Clear();
         GameManager.instance.GenerateNewSequence();
-        SetupNextGuess();    
+        SetupNextGuess();
         Debug.Log("Game started with new sequence: " + string.Join(", ", GameManager.instance.correctSequence));
     }
 
@@ -159,5 +167,9 @@ public class GuessManager : MonoBehaviour
         UpdateCurrentGuess();
     }
 
-    
+    public void Advance()
+    {
+        PlayerPrefs.SetInt("Level", levelNumber);
+    }
+
 }

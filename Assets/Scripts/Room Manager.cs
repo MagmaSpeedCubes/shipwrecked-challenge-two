@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class RoomManager : MonoBehaviour
 {
 
@@ -26,16 +27,22 @@ public class RoomManager : MonoBehaviour
             rm = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        
-        currentMinigameIndex = 1;
+
+        currentMinigameIndex = 0;
+        PlayerPrefs.SetInt("Level", 0);
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        int levelIndex = PlayerPrefs.GetInt("Level");
+        if (levelIndex > currentMinigameIndex)
         {
+            Debug.Log("ewe");
+            currentMinigameIndex = levelIndex;
+
             minigameWasWon();
         }
         
@@ -45,13 +52,13 @@ public class RoomManager : MonoBehaviour
     {
         previousPlayerPosition = GameObject.Find("Player").transform.position;
 
-        SceneManager.LoadScene(currentMinigameIndex, LoadSceneMode.Single);
+        SceneManager.LoadScene(currentMinigameIndex + 1, LoadSceneMode.Single);
 
     }
 
     public void minigameWasWon()
     {
-        currentMinigameIndex++;
+
 
         SceneManager.LoadScene(0, LoadSceneMode.Single);
 
@@ -82,19 +89,19 @@ public class RoomManager : MonoBehaviour
 
     public void setLocks()
     {
-        if (currentMinigameIndex > 1)
+        if (currentMinigameIndex >= 1)
         {
             GameObject.Find(doorList[1]).GetComponent<DoorScript>().locked = false;
             GameObject.Find(doorList[1]).GetComponent<DoorScript>().ForceUpdate();
         }
 
-        if (currentMinigameIndex > 2)
+        if (currentMinigameIndex >= 2)
         {
             GameObject.Find(doorList[2]).GetComponent<DoorScript>().locked = false;
             GameObject.Find(doorList[2]).GetComponent<Collider2D>().isTrigger = true;
         }
 
-        if (currentMinigameIndex > 3)
+        if (currentMinigameIndex >= 3)
         {
             GameObject.Find(doorList[3]).GetComponent<DoorScript>().locked = false;
             GameObject.Find(doorList[3]).GetComponent<Collider2D>().isTrigger = true;
