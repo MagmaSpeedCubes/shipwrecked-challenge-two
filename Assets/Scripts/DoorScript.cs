@@ -12,28 +12,31 @@ public class DoorScript : MonoBehaviour
 
     SpriteRenderer sr;
 
-    SpriteRenderer iconSR;
+    Collider2D col;
+
+    public GameObject icon;
 
     public Color32 lockedColor = new Color32(200, 69, 36, 255);
-    public Color32 unlockedColor = new Color32(123, 69, 36, 255);
+    public Color32 unlockedColor = new Color32(123, 69, 36, 126);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+        col = gameObject.GetComponent<Collider2D>();
 
-        iconSR = UnityEngine.GameObject.Find("Door/Icon").GetComponentInChildren<SpriteRenderer>();
+
+        sr = gameObject.GetComponentInChildren<SpriteRenderer>();
 
         if (locked)
             {
                 sr.color = lockedColor;
-                iconSR.sprite = doorLockedIcon;
+                icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
-                iconSR.sprite = doorUnlockedIcon;
+                icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
             }
 
             prevLocked = locked;
@@ -48,13 +51,13 @@ public class DoorScript : MonoBehaviour
             if (locked)
             {
                 sr.color = lockedColor;
-                iconSR.sprite = doorLockedIcon;
+                icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
-                iconSR.sprite = doorUnlockedIcon;
+                icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
             }
 
             prevLocked = locked;
@@ -66,20 +69,4 @@ public class DoorScript : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        print("hello 1");
-        if (locked == false)
-        {
-            print("hello 2");
-            if (col.gameObject.CompareTag("Player") == true)
-            {
-                print("hello 3");
-                var scene = SceneManager.GetActiveScene();
-                int index = scene.buildIndex;
-                SceneManager.LoadScene(index+1);
-            }
-        }
-
-    }
 }
