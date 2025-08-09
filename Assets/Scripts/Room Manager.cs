@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using System.Collections;
+using System.Collections.Generic;
 
 public class RoomManager : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class RoomManager : MonoBehaviour
     public int currentMinigameIndex;
 
     public Vector3 previousPlayerPosition;
+
+    public List<string> doorList = new List<string>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -70,7 +72,12 @@ public class RoomManager : MonoBehaviour
 
         SceneManager.LoadScene(0, LoadSceneMode.Single);
 
+        StartCoroutine(waitAFrame()); 
 
+    }
+
+    public void setLocks()
+    {
 
     }
 
