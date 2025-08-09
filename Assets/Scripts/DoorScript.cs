@@ -24,6 +24,19 @@ public class DoorScript : MonoBehaviour
 
         iconSR = UnityEngine.GameObject.Find("Door/Icon").GetComponentInChildren<SpriteRenderer>();
 
+        if (locked)
+            {
+                sr.color = lockedColor;
+                iconSR.sprite = doorLockedIcon;
+            }
+
+            else if (!locked)
+            {
+                sr.color = unlockedColor;
+                iconSR.sprite = doorUnlockedIcon;
+            }
+
+            prevLocked = locked;
 
     }
 
@@ -35,11 +48,13 @@ public class DoorScript : MonoBehaviour
             if (locked)
             {
                 sr.color = lockedColor;
+                iconSR.sprite = doorLockedIcon;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
+                iconSR.sprite = doorUnlockedIcon;
             }
 
             prevLocked = locked;
