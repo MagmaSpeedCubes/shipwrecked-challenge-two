@@ -39,6 +39,14 @@ public class RoomManager : MonoBehaviour
 
     }
 
+    public void Reset()
+    {
+        PlayerPrefs.SetInt("Level", 0);
+        currentMinigameIndex = 0;
+        setLocks();
+        Debug.Log("Game reset. Current Minigame Index: " + currentMinigameIndex);
+    }
+
     // Update is called once per frame
     void Update()
     {

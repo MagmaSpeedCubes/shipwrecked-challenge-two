@@ -105,7 +105,7 @@ public class Game : MonoBehaviour
 
         else
         {
-            Debug.Log("WIN");
+            Advance();
         }
 
 
@@ -164,5 +164,10 @@ public class Game : MonoBehaviour
     public void setGuess(int g)
     {
         guess = g;
+    }
+
+    void Advance()
+    {
+        PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
     }
 }
