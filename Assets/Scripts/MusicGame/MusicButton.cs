@@ -4,21 +4,27 @@ public class MusicButton : MonoBehaviour
 {
     [SerializeField] private int id;
 
+    GameObject MusicManagerObject;
+
+    Game GameScript;
+
     void Start()
     {
         Debug.Log("Start");
+        MusicManagerObject = GameObject.Find("MusicManager");
+        GameScript = MusicManagerObject.GetComponent<Game>();
     }
 
     public void OnClick()
     {
-        // Game.instance.setGuess(id);
+        GameScript.setGuess(id);
         playSound();
     }
 
     public void playSound()
     {
         //play sound
-        Debug.Log("Sound" + id);
+        // Debug.Log("Sound" + id);
     }
     
 }

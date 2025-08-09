@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static Game instance { get; private set; }
 
     private int[] CorrectSequence = new int[4];
 
     private int[] Sequence = { 0, 1, 2, 3, 4, 5, 6 };
-    private int[] startSequence = { 0, 1, 2, 3, 4, 5, 6 };
+
+    private readonly int[] startSequence = { 0, 1, 2, 3, 4, 5, 6 };
 
     private string Stage = "intro";
 
@@ -24,10 +25,6 @@ public class Game : MonoBehaviour
     void Start()
     {
         GenerateSequence();
-        for (int i = 0; i < CorrectSequence.Length; i++)
-        {
-            Debug.Log("Correct" + CorrectSequence[i]);
-        }
     }
 
     void Update()
@@ -47,7 +44,7 @@ public class Game : MonoBehaviour
 
         // GAME
         // loop until correct
-        if (!won)
+        else if (!won)
         {
             // SEQUENCE 
             // play correct sequence
@@ -63,21 +60,44 @@ public class Game : MonoBehaviour
 
             // GUESS
             // loop until guessed all spots
-            if ((guessed < CorrectSequence.Length) && (guess != -1))
+            if (Stage == "guess" && (guess != -1))
             {
                 // add button clicks to array
-                Debug.Log(guess);
                 guessSequence[guessed] = guess;
                 guessed++;
                 guess = -1;
+                Debug.Log("GUESS" + guessed);
+
+                if (guessed >= CorrectSequence.Length)
+                {
+                    Stage = "check";
+                    guessed = 0;
+                }
             }
 
             // CHECK
             // check if guess sequence is correct
+            if (Stage == "check")
+            {
+                won = CheckGuess();
+                if (!won)
+                {
+                    guessSequence = new int[4];
+                    Debug.Log("WRONG");
+                    GenerateSequence();
+                    Stage = "sequence";
+                }
+            }
 
             // RESULTS
             // handle result
         }
+
+        else
+        {
+            Debug.Log("WIN");
+        }
+
 
     }
 
@@ -93,12 +113,15 @@ public class Game : MonoBehaviour
                 i++;
             }
 
-            Sequence[i] = -1;
-
             CorrectSequence[count] = i;
 
             count++;
             size--;
+        }
+
+        for (int i = 0; i < CorrectSequence.Length; i++)
+        {
+            Debug.Log("Correct" + CorrectSequence[i]);
         }
     }
 
