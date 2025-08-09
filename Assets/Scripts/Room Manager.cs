@@ -78,6 +78,20 @@ public class RoomManager : MonoBehaviour
 
     public void setLocks()
     {
+        if (currentMinigameIndex > 1)
+        {
+            GameObject.Find(doorList[1]).GetComponent<DoorScript>().locked = false;
+        }
+
+        if (currentMinigameIndex > 2)
+        {
+            GameObject.Find(doorList[2]).GetComponent<DoorScript>().locked = false;
+        }
+
+        if (currentMinigameIndex > 3)
+        {
+            GameObject.Find(doorList[3]).GetComponent<DoorScript>().locked = false;
+        }
 
     }
 
