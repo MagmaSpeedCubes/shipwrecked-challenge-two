@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DoorListenerScript : MonoBehaviour
 {
-    public TMPro_Button startMinigameButton;
+    public Button startMinigameButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +19,7 @@ public class DoorListenerScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "player")
+        if (col.gameObject.tag == "Player")
         {
             startMinigameButton.gameObject.SetActive(true);
         }
@@ -28,7 +27,7 @@ public class DoorListenerScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "player")
+        if (col.gameObject.tag == "Player")
         {
             startMinigameButton.gameObject.SetActive(false);
         }

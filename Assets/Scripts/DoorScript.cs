@@ -31,12 +31,14 @@ public class DoorScript : MonoBehaviour
             {
                 sr.color = lockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
+                col.isTrigger = false;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
+                col.isTrigger = true;
             }
 
             prevLocked = locked;
@@ -52,12 +54,14 @@ public class DoorScript : MonoBehaviour
             {
                 sr.color = lockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorLockedIcon;
+                col.isTrigger = true;
             }
 
             else if (!locked)
             {
                 sr.color = unlockedColor;
                 icon.GetComponent<SpriteRenderer>().sprite = doorUnlockedIcon;
+                col.isTrigger = false;
             }
 
             prevLocked = locked;
