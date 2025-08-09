@@ -18,6 +18,8 @@ public class Game : MonoBehaviour
     private int guessed = 0;
     private int guess = -1;
 
+    private float timer = 0;
+
     private bool won = true;
 
     public Button[] buttons;
@@ -33,12 +35,17 @@ public class Game : MonoBehaviour
         // play notes sequentially
         if (Stage == "intro")
         {
-            playSequence(startSequence);
-            if (playIndex >= startSequence.Length)
+            timer += Time.deltaTime;
+            if (timer > 0.5f)
             {
-                Stage = "sequence";
-                won = false;
-                playIndex = 0;
+                timer = 0;
+                playSequence(startSequence);
+                if (playIndex >= startSequence.Length)
+                {
+                    Stage = "sequence";
+                    won = false;
+                    playIndex = 0;
+                }
             }
         }
 
@@ -50,11 +57,16 @@ public class Game : MonoBehaviour
             // play correct sequence
             if (Stage == "sequence")
             {
-                playSequence(CorrectSequence);
-                if (playIndex >= CorrectSequence.Length)
+                timer += Time.deltaTime;
+                if (timer > 0.5f)
                 {
-                    Stage = "guess";
-                    playIndex = 0;
+                    timer = 0;
+                    playSequence(CorrectSequence);
+                    if (playIndex >= CorrectSequence.Length)
+                    {
+                        Stage = "guess";
+                        playIndex = 0;
+                    }
                 }
             }
 
@@ -83,8 +95,6 @@ public class Game : MonoBehaviour
                 if (!won)
                 {
                     guessSequence = new int[4];
-                    Debug.Log("WRONG");
-                    GenerateSequence();
                     Stage = "sequence";
                 }
             }
@@ -113,12 +123,15 @@ public class Game : MonoBehaviour
                 i++;
             }
 
+            Sequence[i] = -1;
             CorrectSequence[count] = i;
 
             count++;
             size--;
         }
+    }
 
+    void showSequence() {
         for (int i = 0; i < CorrectSequence.Length; i++)
         {
             Debug.Log("Correct" + CorrectSequence[i]);

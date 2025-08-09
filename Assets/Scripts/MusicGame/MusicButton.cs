@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Threading;
 public class MusicButton : MonoBehaviour
 {
     [SerializeField] private int id;
@@ -10,7 +12,6 @@ public class MusicButton : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start");
         MusicManagerObject = GameObject.Find("MusicManager");
         GameScript = MusicManagerObject.GetComponent<Game>();
     }
@@ -24,7 +25,22 @@ public class MusicButton : MonoBehaviour
     public void playSound()
     {
         //play sound
-        // Debug.Log("Sound" + id);
+        StartCoroutine(ChangeColorRoutine());
+    }
+
+    private IEnumerator ChangeColorRoutine()
+    {
+        // Change to gray
+        GetComponent<Image>().color = Color.gray;
+
+        // Wait for 1 second without freezing Unity
+        yield return new WaitForSeconds(0.5f);
+
+        // Change back to white
+        GetComponent<Image>().color = Color.white;
+
+        Debug.Log("sound " + id);
+
     }
     
 }
