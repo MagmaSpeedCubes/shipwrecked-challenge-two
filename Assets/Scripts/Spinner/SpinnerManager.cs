@@ -75,7 +75,7 @@ public class SpinnerManager : MonoBehaviour
     }
 
     public void Advance() {
-        //add advance code
+        PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
     }
 
 }
