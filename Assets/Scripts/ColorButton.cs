@@ -9,19 +9,21 @@ public class ColorButton : MonoBehaviour
         GetComponent<Image>().color = GameManager.instance.colors[colorIndex];
     }
 
-    void OnClick()
+    public void OnClick()
     {
-        if (GuessManager.instance.guessSequence[GuessManager.instance.guessSequence.Length] != -1)
-        //the last item in the guess sequence is empty
+
+        for(int i=0; i < GuessManager.instance.guessSequence.Length; i++)
         {
-            GuessManager.instance.guessSequence[GuessManager.instance.guessSequence.Length] = colorIndex;
-            GuessManager.instance.UpdateCurrentGuess();
+            Debug.Log("checking index: " + i);
+            if (GuessManager.instance.guessSequence[i] == -1)
+            {
+                Debug.Log("found empty slot at index: " + i);
+                GuessManager.instance.guessSequence[i] = colorIndex;
+                GuessManager.instance.UpdateCurrentGuess();
+                return;
+            }
         }
-        else
-        {
-            //play error sound here
-            //guess sequence is full
-        }
+
     }
     
 }
