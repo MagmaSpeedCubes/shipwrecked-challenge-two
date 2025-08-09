@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
 
     RoomManager rm;
 
-    public int currentMinigameIndex;
+    public static int currentMinigameIndex;
 
     public Vector3 previousPlayerPosition;
 
@@ -28,8 +28,13 @@ public class RoomManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        currentMinigameIndex = 0;
-        PlayerPrefs.SetInt("Level", 0);
+        currentMinigameIndex = PlayerPrefs.GetInt("Level");
+        if (!PlayerPrefs.HasKey("Level"))
+        {
+            PlayerPrefs.SetInt("Level", 0);
+        }
+        setLocks();
+
 
 
     }
@@ -43,16 +48,19 @@ public class RoomManager : MonoBehaviour
             Debug.Log("ewe");
             currentMinigameIndex = levelIndex;
 
+            Debug.Log("Current Minigame Index: " + currentMinigameIndex);
+
             minigameWasWon();
         }
         
     }
 
-    public void startMiniGameButtonPressed() 
+    public void startMiniGameButtonPressed()
     {
         previousPlayerPosition = GameObject.Find("Player").transform.position;
 
-        SceneManager.LoadScene(currentMinigameIndex + 1, LoadSceneMode.Single);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level") + 1, LoadSceneMode.Single);
+        Debug.Log("Loading scene: " + PlayerPrefs.GetInt("Level") + 1);
 
     }
 
