@@ -24,6 +24,11 @@ public class SpinnerManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        GenerateHitColors();
+    }
+
     void Update()
     {
 
@@ -46,6 +51,7 @@ public class SpinnerManager : MonoBehaviour
         {
             if (activeSpinner == spinners.Length - 1)
             {
+                activeSpinner = -1;
                 Advance();
             }
             else
@@ -60,10 +66,11 @@ public class SpinnerManager : MonoBehaviour
             {
                 if (i != activeSpinner)
                 {
-                    spinners[i].transform.Rotate(0, 0, 0);
+                    spinners[i].transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
                 activeSpinner = 0;
             }
+            
         }
     }
 
