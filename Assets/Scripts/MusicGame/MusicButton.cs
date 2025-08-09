@@ -19,19 +19,19 @@ public class MusicButton : MonoBehaviour
     public void OnClick()
     {
         GameScript.setGuess(id);
-        playSound();
+        playSound(new Color(0.5f, 0.5f, 0.5f, 1f));
     }
 
-    public void playSound()
+    public void playSound(Color color)
     {
         //play sound
-        StartCoroutine(ChangeColorRoutine());
+        StartCoroutine(ChangeColorRoutine(color));
     }
 
-    private IEnumerator ChangeColorRoutine()
+    private IEnumerator ChangeColorRoutine(Color color)
     {
         // Change to gray
-        GetComponent<Image>().color = Color.gray;
+        GetComponent<Image>().color = color;
 
         // Wait for 1 second without freezing Unity
         yield return new WaitForSeconds(0.5f);

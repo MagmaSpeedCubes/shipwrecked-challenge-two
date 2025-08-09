@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
             if (timer > 0.5f)
             {
                 timer = 0;
-                playSequence(startSequence);
+                playSequence(startSequence, new Color(0f, 0f, 0.8f, 1f));
                 if (playIndex >= startSequence.Length)
                 {
                     Stage = "sequence";
@@ -61,7 +61,7 @@ public class Game : MonoBehaviour
                 if (timer > 0.5f)
                 {
                     timer = 0;
-                    playSequence(CorrectSequence);
+                    playSequence(CorrectSequence, new Color(0f, 0.8f, 0f, 1f));
                     if (playIndex >= CorrectSequence.Length)
                     {
                         Stage = "guess";
@@ -150,15 +150,15 @@ public class Game : MonoBehaviour
         return true;
     }
 
-    void playSequence(int[] seq)
+    void playSequence(int[] seq, Color color)
     {
-        playNote(seq, playIndex);
+        playNote(seq, playIndex, color);
         playIndex++;
     }
 
-    void playNote(int[] sequence, int i)
+    void playNote(int[] sequence, int i, Color color)
     {
-        buttons[sequence[i]].GetComponent<MusicButton>().playSound();
+        buttons[sequence[i]].GetComponent<MusicButton>().playSound(color);
     }
 
     public void setGuess(int g)
