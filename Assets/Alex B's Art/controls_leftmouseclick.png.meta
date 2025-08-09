@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: c37d362a73d6c4d71a574358803a5707
+guid: 1347db4e9beaa4cf289a721c85443bfd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3501656051621548550
-    second: different_position_info_indicator_0
+      213: 6433847910897726351
+    second: controls_leftmouseclick_0
+  - first:
+      213: 731249914629215389
+    second: controls_leftmouseclick_1
+  - first:
+      213: -7256776928984217073
+    second: controls_leftmouseclick_2
+  - first:
+      213: 1134206962434114427
+    second: controls_leftmouseclick_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: different_position_info_indicator_0
+      name: controls_leftmouseclick_0
       rect:
         serializedVersion: 2
-        x: 575
-        y: 575
-        width: 449
-        height: 449
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 602df7a50a1689030800000000000000
-      internalID: 3501656051621548550
+      spriteID: f83b2f3469e994950800000000000000
+      internalID: 6433847910897726351
       vertices: []
       indices: 
       edges: []
@@ -138,7 +147,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 6b4753ae7275949c79cd385655c0f531
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +155,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1024.0,"y":1024.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      different_position_info_indicator_0: 3501656051621548550
+      controls_leftmouseclick_0: 6433847910897726351
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
