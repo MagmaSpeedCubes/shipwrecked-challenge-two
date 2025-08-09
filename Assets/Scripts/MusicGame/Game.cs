@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 public class Game : MonoBehaviour
 {
     public static Game instance { get; private set; }
@@ -10,7 +11,7 @@ public class Game : MonoBehaviour
 
     private readonly int[] startSequence = { 0, 1, 2, 3, 4, 5, 6 };
 
-    private string Stage = "intro";
+    private string Stage = "sequence";
 
     private int[] guessSequence = new int[4];
 
@@ -20,7 +21,7 @@ public class Game : MonoBehaviour
 
     private float timer = 0;
 
-    private bool won = true;
+    private bool won = false;
 
     public Button[] buttons;
 
@@ -96,6 +97,7 @@ public class Game : MonoBehaviour
                 {
                     guessSequence = new int[4];
                     Stage = "sequence";
+                    Thread.Sleep(1000);
                 }
             }
 
