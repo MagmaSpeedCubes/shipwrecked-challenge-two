@@ -7,6 +7,8 @@ public class SpinnerManager : MonoBehaviour
     [SerializeField] private float[] spinnerSpeed;
     public int activeSpinner = 0;
 
+    public int[] hitColorIndices;
+
     public Color[] segmentColors;
     void Awake()
     {
@@ -28,6 +30,45 @@ public class SpinnerManager : MonoBehaviour
         spinners[activeSpinner].transform.Rotate(0, 0, spinnerSpeed[activeSpinner] * Time.deltaTime * 360f);
 
     }
-    
+
+    public void GenerateHitColors()
+    {
+        hitColorIndices = new int[3];
+        for (int i = 0; i < 3; i++)
+        {
+            hitColorIndices[i] = Random.Range(0, segmentColors.Length);
+        }
+    }
+
+    public void Hit(int hitColorIndex)
+    {
+        if (hitColorIndex == hitColorIndices[activeSpinner])
+        {
+            if (activeSpinner == spinners.Length - 1)
+            {
+                Advance();
+            }
+            else
+            {
+                activeSpinner++;
+
+            }
+        }
+        else
+        {
+            for (int i = 0; i < spinners.Length; i++)
+            {
+                if (i != activeSpinner)
+                {
+                    spinners[i].transform.Rotate(0, 0, 0);
+                }
+                activeSpinner = 0;
+            }
+        }
+    }
+
+    public void Advance() {
+        //add advance code
+    }
 
 }
